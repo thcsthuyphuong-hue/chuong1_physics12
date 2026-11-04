@@ -490,7 +490,7 @@
 
         <footer>
             <div style="font-weight: 800; color: #cbd5e0; margin-bottom: 5px;">KIỂM TRA CHƯƠNG 1 NĂM HỌC 2026-2027</div>
-            <div style="font-size: 0.85rem;">Bản quyền thuộc về Trường THCS Thủy Phương, Thành phố Huế</div>
+            <div style="font-size: 0.85rem;">Bản quyền thuộc về thạc sĩ Nguyễn Thị Ánh Hà, Trường THPT Nguyễn Trường Tộ, Thành phố Huế</div>
         </footer>
     </div>
 </div>
@@ -1326,7 +1326,7 @@ document.getElementById('stu-filter-class').onchange = () => renderAdminStudents
 document.getElementById('btn-refresh-students').onclick = () => renderAdminStudents();
 
 document.getElementById('btn-download-template').onclick = () => {
-    const templateData = [{ "STT": 1, "Họ và Tên": "Nguyễn Văn A", "Lớp": "9/1", "SBD": "01", "Trường": "THCS Thủy Phương" }];
+    const templateData = [{ "STT": 1, "Họ và Tên": "Nguyễn Văn A", "Lớp": "12/A1", "SBD": "01", "Trường": "THPT Nguyễn Trường Tộ" }];
     const ws = XLSX.utils.json_to_sheet(templateData);
     ws['!cols'] = [{wch: 5}, {wch: 30}, {wch: 10}, {wch: 10}, {wch: 30}];
     const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "DanhSachHocSinh");
@@ -1349,7 +1349,7 @@ document.getElementById('file-import-students').onchange = (e) => {
                 const name = row["Họ và Tên"] || row["Họ tên"] || row["Họ và tên"] || row["Name"];
                 const cls = row["Lớp"] || row["Class"];
                 const sbd = row["SBD"] || row["Số báo danh"] || row["ID"];
-                const school = row["Trường"] || row["School"] || "THCS Thủy Phương";
+                const school = row["Trường"] || row["School"] || "THPT Nguyễn Trường Tộ";
                 if(name && cls && sbd) {
                     await addDoc(collection(db, 'artifacts', appId_fixed, 'public', 'data', collectionStudents), {
                         name: String(name).trim(), class: String(cls).trim(), sbd: String(sbd).trim(), school: String(school).trim()
