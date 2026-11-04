@@ -360,14 +360,9 @@
                 </div>
                 <div id="rank-container"><div id="rank-badge" class="rank-badge">XẾP LOẠI</div></div>
             </div>
-            <div class="grid-2-col" style="margin-top: 20px;">
-                <button id="btn-view-review" class="btn btn-fire">XEM GIẢI THÍCH 📖</button>
-                <button class="btn btn-gray" onclick="location.reload()">LÀM ĐỀ KHÁC</button>
-            </div>
-            <div id="review-area" style="display:none; margin-top: 30px;">
-                <h2 id="review-heading" style="text-align:center; color: var(--primary); margin: 30px 0;">CHI TIẾT BÀI LÀM</h2>
-                <div id="review-content"></div>
-            </div>
+         <div style="margin-top: 20px; text-align: center;">
+    <button class="btn btn-fire" style="width: 100%; max-width: 350px;" onclick="location.reload()">LÀM ĐỀ KHÁC / THI LẠI 🔄</button>
+</div>
         </section>
 
         <!-- Màn hình Admin -->
@@ -876,10 +871,10 @@ const initGame = (m) => {
 function renderQuestion() {
     const q = currentExam[currentIdx]; const container = document.getElementById('quiz-content'); const labels = ['A', 'B', 'C', 'D'];
     let html = `<div class="section-title">${q.section}</div><div class="card" style="margin-top: -10px;">`;
-    if(mode === 'practice') {
+   /* if(mode === 'practice') {
         let hintBtnText = unlockedHints.includes(q.id) ? "ĐÃ MỞ GỢI Ý 💡" : `XEM GỢI Ý 💡 (Còn ${maxHintsAllowed - hintsUsed})`;
         html += `<button class="btn-hint" id="hint-trigger" style="padding: 8px 15px; border-radius: 8px; border: 2px solid var(--accent); background: #fffbeb; color: #b45309; font-weight: bold; cursor: pointer; margin-bottom: 15px;">${hintBtnText}</button><div id="hint-box" class="hint-box" style="display: none; margin-bottom: 15px; padding: 12px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 0.9rem; color: #475569; line-height: 1.5;"><b>Hướng dẫn tư duy:</b><br>${q.e}</div>`;
-    }
+    }*/
     if(q.type === 'mcq') {
         html += `<h3>Câu ${q.displayNum}. ${q.q}</h3>`;
         if(!q.shuffledOptions) q.shuffledOptions = shuffle([...q.o]);
@@ -916,7 +911,7 @@ function renderQuestion() {
             slot.onkeydown = (e) => { if (e.key === 'Backspace' && !e.target.value && idx > 0) slots[idx - 1].focus(); };
         });
     }
-    const hb = document.getElementById('hint-trigger');
+  //  const hb = document.getElementById('hint-trigger');
     if(hb) {
         hb.onclick = async () => { 
             const b = document.getElementById('hint-box'); const isH = b.style.display === 'none'; 
@@ -926,7 +921,7 @@ function renderQuestion() {
             }
             b.style.display = isH ? 'block' : 'none'; if(isH && window.MathJax) await MathJax.typesetPromise([b]); autoScaleApp(); 
         };
-    }
+    }//
     document.getElementById('btn-prev').style.visibility = currentIdx === 0 ? 'hidden' : 'visible';
     document.getElementById('btn-next').style.display = currentIdx === currentExam.length - 1 ? 'none' : 'block';
     document.getElementById('btn-finish').style.display = currentIdx === currentExam.length - 1 ? 'block' : 'none';
