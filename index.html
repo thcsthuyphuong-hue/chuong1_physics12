@@ -942,7 +942,7 @@ async function calculateResult() {
         if(q.type === 'mcq' && norm(userAnswers[q.id]||'') === norm(q.a)) score += pMCQ;
         else if(q.type === 'tf') { let cp = 0, u = userAnswers[q.id] || {}; q.sts.forEach((st, si) => { if(u[si] === st.a) cp++; }); score += tfMap[cp] || 0; }
         else if(q.type === 'short' && checkShortAns(userAnswers[q.id], q.a)) score += pShort;
-    });
+    }); 
     const fs = Number(Math.min(10, score).toFixed(2));
     document.getElementById('wish-overlay').style.display = 'none'; cancelAnimationFrame(fireRequest);
     showScreen('screen-result'); document.getElementById('main-header').style.display = 'none';
